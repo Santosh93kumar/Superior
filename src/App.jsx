@@ -6,7 +6,7 @@ import React from 'react'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Applayout from "./Applayout";
 import Home from "./component/Home";
-import About from "./component/About";
+import About from "./component/about/About";
 import Service from "./component/Service";
 import Servicepage from './component/service/Servicedetail';
 function App() {

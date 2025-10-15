@@ -8,7 +8,7 @@ export default function Header() {
 
   const servicedata = [
     {id:1, name: "Web Development",  },
-    {id:2, name: "App Development",  },
+    {id:2, name: "Web Design",  },
     {id:3, name: "Website Design",  },
     {id:4, name: "SEO Services",  },
     {id:5, name: "Digital Marketing" },
@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-10 transition-all duration-500 ${
         isScrolled
           ? "bg-black/40 backdrop-blur-md shadow-md"
           : "bg-transparent"
