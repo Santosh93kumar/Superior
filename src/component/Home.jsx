@@ -6,43 +6,62 @@ import HexagonBackground from './Source/HexaBackground'
 import data from './data.js'
 import { useNavigate } from "react-router-dom";
 import Header from "./Header.jsx";
+
 function Home() {
-  const images = [
-    "https://media.istockphoto.com/id/1312447731/photo/business-woman-at-office-stock-photo.jpg?s=1024x1024&w=is&k=20&c=D0B6UJetXL7j1Gge8JclH1rckVPjW3_iBY0gTMSMGnE=",
-    "https://cdn.pixabay.com/photo/2024/06/21/12/45/lake-8844310_1280.jpg",
-    "https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg",
-  ];
+  
 
 function Carousel() {
-  const [current, setCurrent] = useState(0);
-
-  // Sample images (replace with your own)
   const images = [
     "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
     "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
     "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
   ];
 
-  // Auto-slide every 4s
+ const REPEAT_COUNT = 100;
+  const extendedImages = Array(REPEAT_COUNT)
+    .fill(images)
+    .flat(); // 💥 creates 3 x 100 = 300 slides
+
+  const [current, setCurrent] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // ⏳ Auto slide
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      nextSlide();
     }, 4000);
     return () => clearInterval(interval);
   }, []);
 
-  const prevSlide = () =>
-    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  // 🔁 Handle infinite scroll
+  useEffect(() => {
+    if (current === extendedImages.length - 1) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(1);
+      }, 700);
+    }
+    if (current === 0) {
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(extendedImages.length - 2);
+      }, 700);
+    } else {
+      setIsTransitioning(true);
+    }
+  }, [current]);
+
+  const prevSlide = () => setCurrent((prev) => prev - 1);
+  const nextSlide = () => setCurrent((prev) => prev + 1);
 
   return (
     <div className="relative w-full h-[100vh] overflow-hidden">
       {/* Slides */}
       <div
-        className="flex transition-transform duration-700 ease-in-out"
+        className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {images.map((src, i) => (
+        {extendedImages.map((src, i) => (
           <img
             key={i}
             src={src}
@@ -52,10 +71,7 @@ function Carousel() {
         ))}
       </div>
 
-      {/* 🖤 Blackish Overlay with blur */}
-    
-
-      {/* Left Arrow */}
+      {/* ⬅️ Left Arrow */}
       <button
         onClick={prevSlide}
         className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
@@ -63,7 +79,7 @@ function Carousel() {
         <FaChevronLeft />
       </button>
 
-      {/* Right Arrow */}
+      {/* ➡️ Right Arrow */}
       <button
         onClick={nextSlide}
         className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
@@ -71,14 +87,14 @@ function Carousel() {
         <FaChevronRight />
       </button>
 
-      {/* Dots */}
+      {/* ⭕ Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
         {images.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrent(i)}
+            onClick={() => setCurrent(i + 1)} // offset by 1 because of clone
             className={`w-3 h-3 rounded-full ${
-              current === i ? "bg-white" : "bg-gray-400"
+              current === i + 1 ? "bg-white" : "bg-gray-400"
             }`}
           ></button>
         ))}
@@ -86,7 +102,6 @@ function Carousel() {
     </div>
   );
 }
-
 
   function TrustedPartner() {
     const partners = [
@@ -241,27 +256,14 @@ function Carousel() {
         description: "Another calm and peaceful nature view.",
         img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
       },
-      {
-        title: "Project One",
-        discription: "This project highlights the serene beauty of nature through a carefully crafted design, focusing on the calm and balance trees bring to our environment. It emphasizes simplicity, peacefulness, and natural inspiration, making it a perfect representation of creativity, sustainability, and harmony between modern design and the natural world.",
-        img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-      },
-      {
-        title: "Project Two",
-        description: "An adventurous project exploring the wild landscapes.",
-        img: "https://cdn.pixabay.com/photo/2016/11/29/03/53/adventure-1867271_1280.jpg",
-      },
-      {
-        title: "Project Three",
-        description: "A road to success project reflecting endless possibilities.",
-        img: "https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg",
-      },
-      {
-        title: "Project Four",
-        description: "Another calm and peaceful nature view.",
-        img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg",
-      },
+      
     ];
+
+
+     const REPEAT_COUNT = 10;
+  const project = Array(REPEAT_COUNT)
+    .fill(projects)
+    .flat(); // 💥 creates 3 x 100 = 300 slides
 
     const [paused, setPaused] = useState(false);
     const [selected, setSelected] = useState(projects[0]);
@@ -280,7 +282,7 @@ function Carousel() {
               className={`animate-scroll space-y-4 pr-2 ${paused ? "animate-scroll-paused" : ""
                 }`}
             >
-              {projects.map((project, i) => (
+              {project.map((project, i) => (
                 <div
                   key={i}
                   className={`mb-8 p-4 rounded-xl cursor-pointer transition shadow-md hover:shadow-lg ${selected.title === project.title
