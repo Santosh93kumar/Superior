@@ -34,7 +34,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 w-full z-10 transition-all duration-500 ${
         isScrolled
-          ? "bg-black/40 backdrop-blur-md shadow-md"
+          ? "bg-orange-400 backdrop-blur-md shadow-md"
           : "bg-transparent"
       }`}
     >
@@ -113,13 +113,13 @@ export default function Header() {
         </nav>
 
         {/* Right: Contact Button */}
-        <div className="hidden md:block">
-          <a
-            href="tel:9999999"
-            className="text-orange-500 px-5 py-2 rounded-lg font-semibold border-2 border-orange-500 hover:bg-[#05CBC6] hover:text-white transition"
-          >
-            Contact Us: 9999999
-          </a>
+        <div className="hidden md:block space-x-3">
+         <button className="text-lg w-20 px-2 py-1 border-orange-400 text-orange-400 font-semibold border-2 rounded-lg">
+          Login
+         </button>
+         <button className="text-lg w-20 px-2 py-1 border-orange-400 bg-orange-400 text-white font-semibold border rounded-lg">
+          Sign up
+         </button>
         </div>
 
         {/* Mobile Hamburger Button */}
