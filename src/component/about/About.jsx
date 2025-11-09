@@ -44,7 +44,8 @@ export default function About() {
             Empowering <span className="text-teal-400">Innovation</span>
           </h1>
           <p className="text-lg md:text-xl mb-6">
-            Transforming ideas into impactful web experiences & empowering the next generation of developers.
+            Transforming ideas into impactful web experiences & empowering the
+            next generation of developers.
           </p>
           <button className="px-6 py-3 bg-teal-500 text-white rounded-full font-semibold hover:bg-teal-600 transition">
             Learn More
@@ -64,8 +65,10 @@ export default function About() {
           About <span className="text-teal-600">Us</span>
         </h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
-          We are a passionate team dedicated to building modern, fast, and user-friendly web solutions. 
-          Along with professional services, we empower students and freshers with industry-level training and internships in trending technologies.
+          We are a passionate team dedicated to building modern, fast, and
+          user-friendly web solutions. Along with professional services, we
+          empower students and freshers with industry-level training and
+          internships in trending technologies.
         </p>
       </motion.div>
 
@@ -90,7 +93,9 @@ export default function About() {
               className="bg-white shadow-sm rounded-xl p-6 flex flex-col items-center justify-center hover:shadow-lg hover:-translate-y-2 transition duration-300"
             >
               <div className="text-teal-600 mb-3">{service.icon}</div>
-              <h4 className="text-gray-800 font-semibold text-lg">{service.name}</h4>
+              <h4 className="text-gray-800 font-semibold text-lg">
+                {service.name}
+              </h4>
             </motion.div>
           ))}
         </div>
@@ -112,8 +117,9 @@ export default function About() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          We provide hands-on training programs designed to make students industry ready. 
-          Learn from professionals and work on real-time projects.
+          We provide hands-on training programs designed to make students
+          industry ready. Learn from professionals and work on real-time
+          projects.
         </motion.p>
 
         <div className="flex flex-wrap justify-center gap-3">

@@ -121,13 +121,12 @@
 
 //   const getColorFromName = (name) => {
 //     const colors = [
-     
 
 //       "bg-blue-500",
 //       "bg-purple-500",
-    
+
 //       "bg-indigo-500",
-     
+
 //     ];
 //     const charCodeSum = name.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
 //     return colors[charCodeSum % colors.length];
@@ -161,9 +160,6 @@
 //           <FaQuoteLeft className="text-xl text-blue-600 hover:text-white" />
 //           <p className="mt-2 text-base line-clamp-5">{item.text}</p>
 
-     
-
-
 //           <div className="flex flex-col  mt-14 gap-2">
 //                 <div className="w-full border-t-2 border-gray-400"></div>
 //            <div className="flex gap-2">
@@ -185,7 +181,6 @@
 //     ))}
 //   </Slider>
 // </div>
-
 
 //       {/* Custom Styling for Dots and Arrows */}
 //       <style>
@@ -277,8 +272,7 @@
 
 // export default TestimonialSection;
 
-
-import React from 'react'
+import React from "react";
 import { Star, Play } from "lucide-react";
 
 const testimonials = [
@@ -290,7 +284,8 @@ const testimonials = [
       "I had an incredible learning experience in the Backend Development course. The course covered everything from networking, databases,ad an incredible learning experience in the Backend Development course. The course covered everything from networking, .",
     stars: 5,
     // type: "video",
-    image: "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww&fm=jpg&q=60&w=3000",
+    image:
+      "https://plus.unsplash.com/premium_photo-1690407617542-2f210cf20d7e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fHww&fm=jpg&q=60&w=3000",
   },
   {
     name: "Krishna Tiwari",
@@ -300,16 +295,19 @@ const testimonials = [
       "I have been searching for content that levels me up and spent a lot of time and money. Rakesh sir, where have you been all this time? Absolutely game winner course ad an incredible learning experience in the Backend Development course. The course covered everything from networking, .",
     stars: 5,
     // type: "text",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjBTIJQA5vmWLWDq7a3w9a1QTZzv9TbaPWA&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWjBTIJQA5vmWLWDq7a3w9a1QTZzv9TbaPWA&s",
   },
   {
     name: "Sujoy Kumar Haldar",
     role: "Frontend Engineer",
     username: "@sujoykumarhaldar",
-    message: "I found both the Advanced MERN and Backend Foundation courses to be exceptionally well-structured and beginner-friendly. Highly recommended for anyone \\\\\\\\\\\\\\\\\ ad an incredible learning experience in the Backend Development course. The course covered everything from networking," ,
+    message:
+      "I found both the Advanced MERN and Backend Foundation courses to be exceptionally well-structured and beginner-friendly. Highly recommended for anyone \\\\\\\\\\\\\\\\\ ad an incredible learning experience in the Backend Development course. The course covered everything from networking,",
     stars: 5,
     // type: "video",
-    image: "https://imgs.search.brave.com/0-x_bzTdAsmVTbTAxNcINw_liyip68lLOr_EeSFaHGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/aWdpdGFsLWFydC1w/b3J0cmFpdC1wZXJz/b24tbGlzdGVuaW5n/LW11c2ljLWhlYWRw/aG9uZXNfMjMtMjE1/MTA2NTA3OC5qcGc_/c2VtdD1haXNfaHli/cmlkJnc9NzQw",
+    image:
+      "https://imgs.search.brave.com/0-x_bzTdAsmVTbTAxNcINw_liyip68lLOr_EeSFaHGc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/aWdpdGFsLWFydC1w/b3J0cmFpdC1wZXJz/b24tbGlzdGVuaW5n/LW11c2ljLWhlYWRw/aG9uZXNfMjMtMjE1/MTA2NTA3OC5qcGc_/c2VtdD1haXNfaHli/cmlkJnc9NzQw",
   },
 ];
 
@@ -318,69 +316,69 @@ export default function TestimonialSection() {
     <section className="text-black bg-orange-200 py-16 px-6">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl font-bold mb-2">What Our Students Say</h2>
-        <p className="text-gray-400">Real stories from people who leveled up 🚀</p>
+        <p className="text-gray-400">
+          Real stories from people who leveled up 🚀
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-{testimonials.map((t, idx) => (
-  <div
-    key={idx}
-    className="relative p-6 rounded-2xl border border-blue-300/30 shadow-lg flex flex-col bg-orange-400 backdrop-blur-xl overflow-hidden group"
-  >
-    {/* Image */}
-   <img
-  src={t.image}
-  alt={t.name}
-  className="absolute top-6 left-6 w-12 h-12 rounded-full object-cover border border-blue-300/30
+        {testimonials.map((t, idx) => (
+          <div
+            key={idx}
+            className="relative p-6 rounded-2xl border border-blue-300/30 shadow-lg flex flex-col bg-orange-400 backdrop-blur-xl overflow-hidden group"
+          >
+            {/* Image */}
+            <img
+              src={t.image}
+              alt={t.name}
+              className="absolute top-6 left-6 w-12 h-12 rounded-full object-cover border border-blue-300/30
              transition-all duration-500 group-hover:top-0 group-hover:left-0 group-hover:w-full group-hover:h-full group-hover:rounded-none group-hover:object-contain"
-/>
+            />
 
+            {/* Top-left User info (default) */}
+            <div className="text-left flex flex-col relative ml-14 transition-opacity duration-500 group-hover:opacity-0 z-20">
+              <h4 className="font-semibold text-white text-base">{t.name}</h4>
+              <p className="text-xs text-gray-300 w-[150px]">{t.role}</p>
+              <p className="text-xs text-blue-300">{t.username}</p>
+            </div>
 
-    {/* Top-left User info (default) */}
-    <div className="text-left flex flex-col relative ml-14 transition-opacity duration-500 group-hover:opacity-0 z-20">
-      <h4 className="font-semibold text-white text-base">{t.name}</h4>
-      <p className="text-xs text-gray-300 w-[150px]">{t.role}</p>
-      <p className="text-xs text-blue-300">{t.username}</p>
-    </div>
+            {/* Stars */}
+            <div className="flex mb-2 justify-end absolute right-0 p-6 top-0 z-20 transition-opacity duration-500 group-hover:opacity-0">
+              {Array.from({ length: t.stars }).map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-white fill-white" />
+              ))}
+            </div>
 
-    {/* Stars */}
-    <div className="flex mb-2 justify-end absolute right-0 p-6 top-0 z-20 transition-opacity duration-500 group-hover:opacity-0">
-      {Array.from({ length: t.stars }).map((_, i) => (
-        <Star key={i} className="w-5 h-5 text-white fill-white" />
-      ))}
-    </div>
+            {/* Gradient overlay */}
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent opacity-0
+                    transition-opacity duration-500 group-hover:opacity-100 z-10"
+            ></div>
 
-    {/* Gradient overlay */}
-    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-transparent to-transparent opacity-0
-                    transition-opacity duration-500 group-hover:opacity-100 z-10"></div>
+            {/* Bottom User info (on hover) */}
+            <div
+              className="absolute bottom-6 left-6 text-left flex flex-col opacity-0 z-20
+                    transition-opacity duration-500 group-hover:opacity-100"
+            >
+              <h4 className="font-semibold text-white text-base">{t.name}</h4>
+              <p className="text-xs text-gray-300 w-[150px]">{t.role}</p>
+              <p className="text-xs text-blue-300">{t.username}</p>
+            </div>
 
-    {/* Bottom User info (on hover) */}
-    <div className="absolute bottom-6 left-6 text-left flex flex-col opacity-0 z-20
-                    transition-opacity duration-500 group-hover:opacity-100">
-      <h4 className="font-semibold text-white text-base">{t.name}</h4>
-      <p className="text-xs text-gray-300 w-[150px]">{t.role}</p>
-      <p className="text-xs text-blue-300">{t.username}</p>
-    </div>
+            {/* Message / Play button */}
+            <div className="relative z-20 flex flex-col gap-2 mt-auto">
+              {t.type === "video" && (
+                <div className="absolute top-4 left-4 bg-blue-300/20 backdrop-blur-md p-2 rounded-full cursor-pointer z-30">
+                  <Play className="w-5 h-5 text-white" />
+                </div>
+              )}
 
-    {/* Message / Play button */}
-    <div className="relative z-20 flex flex-col gap-2 mt-auto">
-      {t.type === "video" && (
-        <div className="absolute top-4 left-4 bg-blue-300/20 backdrop-blur-md p-2 rounded-full cursor-pointer z-30">
-          <Play className="w-5 h-5 text-white" />
-        </div>
-      )}
-
-      <p className="text-white text-sm transition-opacity duration-300 group-hover:opacity-0">
-        {t.message}
-      </p>
-    </div>
-  </div>
-))}
-
-
-
-
-
+              <p className="text-white text-sm transition-opacity duration-300 group-hover:opacity-0">
+                {t.message}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

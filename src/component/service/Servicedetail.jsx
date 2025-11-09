@@ -36,7 +36,7 @@ function Servicedetail() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     sections.forEach((section) => {
@@ -111,9 +111,7 @@ function Servicedetail() {
             }`}
           >
             <div className="md:w-1/2">
-              <h1 className="text-3xl font-bold mb-5">
-                {content.about.title}
-              </h1>
+              <h1 className="text-3xl font-bold mb-5">{content.about.title}</h1>
               <p className="text-lg text-gray-600">{content.about.content}</p>
             </div>
             <div className="md:w-1/2">
@@ -137,9 +135,7 @@ function Servicedetail() {
               <h1 className="text-3xl font-bold mb-5">
                 {content.service.title}
               </h1>
-              <p className="text-lg text-gray-600">
-                {content.service.content}
-              </p>
+              <p className="text-lg text-gray-600">{content.service.content}</p>
             </div>
             <div className="md:w-1/2">
               <img
