@@ -9,9 +9,12 @@ import {
 } from "react-icons/fa";
 import TestimonialSection from "./home/Testimonail";
 import HexagonBackground from "./Source/HexaBackground";
-import data from "./data.js";
+import {data, project} from "./data.js";
+
+console.log(project)
 import { useNavigate } from "react-router-dom";
 import Header from "./Header.jsx";
+import { div } from "framer-motion/client";
 
 function Home() {
   function Carousel() {
@@ -147,43 +150,7 @@ function Home() {
 
   function ServicesSection() {
     const navigate = useNavigate();
-    const services = [
-      {
-        title: "Web Development",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQykzoZeCE0p7LeuyHnLYCdPP2jju9d5PaMeA&s",
-        description:
-          "  Building scalable and high-performance websites with modern technologies. Building scalable and high-performance websites with modern technologies",
-        icon: <FaCode className="text-blue-600 text-4xl mb-4" />,
-      },
-      {
-        img: "https://dynamic.design.com/asset/logo/e8483a98-2141-43f4-a663-d2f5afcd3f3a/logo-search-grid-2x?logoTemplateVersion=1&v=638908470043100000",
-        title: "Web Design",
-        description:
-          "Crafting user-friendly and responsive designs for better engagement.",
-        icon: <FaPaintBrush className="text-pink-500 text-4xl mb-4" />,
-      },
-      {
-        title: "SEO",
-        img: "https://dynamic.design.com/asset/logo/e8483a98-2141-43f4-a663-d2f5afcd3f3a/logo-search-grid-2x?logoTemplateVersion=1&v=638908470043100000",
-        description:
-          "Optimizing your website to rank higher in search engines and reach more people.",
-        icon: <FaSearch className="text-green-600 text-4xl mb-4" />,
-      },
-      {
-        title: "Digital Marketing",
-        img: "https://dynamic.design.com/asset/logo/e8483a98-2141-43f4-a663-d2f5afcd3f3a/logo-search-grid-2x?logoTemplateVersion=1&v=638908470043100000",
-        description:
-          "Effective online marketing strategies to grow your business.",
-        icon: <FaBullhorn className="text-yellow-500 text-4xl mb-4" />,
-      },
-      {
-        title: "Graphic Design",
-        img: " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUsbmTZu_uMrmJ0z--CrG-o1UIXytu1OCizQ&s",
-        description:
-          "Creative and impactful visuals for branding, ads, and promotions.",
-        icon: <FaPenNib className="text-purple-600 text-4xl mb-4" />,
-      },
-    ];
+   
 
     return (
       <section className="py-16">
@@ -215,7 +182,7 @@ function Home() {
                   <img
                     src={service.img}
                     alt={service.title}
-                    className="h-56 w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                    className="h-56 w-full object-center transition-transform duration-500 ease-in-out group-hover:scale-105"
                   />
                   {/* Glow Effect from Bottom */}
                   <div className="absolute bottom-0 left-0 w-full h-1/2 bg-[linear-gradient(to_top,rgba(37,99,235,0.6),transparent)] opacity-0 group-hover:opacity-100 transition duration-500"></div>
@@ -269,82 +236,39 @@ function Home() {
       },
     ];
 
-    const REPEAT_COUNT = 10;
-    const project = Array(REPEAT_COUNT).fill(projects).flat(); // 💥 creates 3 x 100 = 300 slides
-
-    const [paused, setPaused] = useState(false);
-    const [selected, setSelected] = useState(projects[0]);
-
+    
     return (
-      <div className="flex flex-col">
-        <h2 className="text-3xl md:text-4xl font-bold text-center  text-gray-800">
-          Our Projects
-        </h2>
-        <p className="text-gray-600 mt-2 text-center mb-6">
-          We offer a wide range of digital solutions to grow your business
-        </p>
-
-        <div className="flex w-full gap-6 px-6">
-          {/* LEFT SCROLLER */}
-          <div className="relative w-3/12 h-[500px] border-4 p-6 border-zinc-100 rounded-lg overflow-hidden">
-            <div
-              className={`animate-scroll space-y-4 pr-2 ${
-                paused ? "animate-scroll-paused" : ""
-              }`}
-            >
-              {project.map((project, i) => (
-                <div
-                  key={i}
-                  className={`mb-8 p-4 rounded-xl cursor-pointer transition shadow-md hover:shadow-lg ${
-                    selected.title === project.title
-                      ? "border-2 border-blue-500"
-                      : "bg-white"
-                  }`}
-                  onMouseEnter={() => {
-                    setPaused(true);
-                    setSelected(project);
-                  }}
-                  onMouseLeave={() => setPaused(false)}
-                  onClick={() => setSelected(project)}
-                >
-                  <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                    {project.title}
-                  </h3>
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-28 object-cover rounded-lg"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT PREVIEW */}
-          <div className="w-9/12 h-[500px] flex justify-center items-center bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="flex w-full h-full">
-              {/* LEFT (Image) */}
-              <div className="w-6/12 flex items-center justify-center ">
-                <img
-                  src={selected.img}
-                  alt={selected.title}
-                  className="w-full h-full p-5 object-cover"
-                />
-              </div>
-
-              {/* RIGHT (Details) */}
-              <div className="w-6/12 p-5 flex flex-col ">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  {selected.title}
-                </h3>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  {selected.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col bg-#191970 rounded-2xl shadow-xl py-10 px-4">
+  <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 drop-shadow-lg">
+    Our Projects
+  </h2>
+  <p className="text-gray-300 mt-2 text-gray-700 text-center mb-6">
+    We offer a wide range of digital solutions to grow your business
+  </p>
+<div className="w-full flex flex-wrap -mx-3">
+  {project.map((data, index) => (
+    <div
+      key={index}
+      className="w-1/2 px-3 mb-6" // 2 cards per row
+    >
+      <div className="bg-white rounded-lg shadow-md p-4">
+        <img
+          src={data.img}
+          className="w-full h-auto object-cover rounded-md mb-3"
+          alt={data.title}
+        />
+        <h2 className="text-xl font-semibold text-gray-800">{data.title}</h2>
+        <p className="text-gray-600 mt-2">{data.content}</p>
       </div>
+    </div>
+  ))}
+</div>
+
+
+
+ 
+</div>
+
     );
   }
 

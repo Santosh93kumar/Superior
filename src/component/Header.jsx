@@ -38,7 +38,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="w-full mx-auto px-2 py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-2 py-3 flex items-center justify-between">
         {/* Left: Logo */}
         <div className="text-2xl space-x-2.5 flex font-bold text-gray-800">
           <img
@@ -50,11 +50,11 @@ export default function Header() {
         </div>
 
         {/* Center: Nav Links (Desktop) */}
-        <nav className="hidden text-lg md:flex space-x-8 font-semibold">
+        <nav className="hidden text-lg md:flex space-x-8 ">
           <a
             onClick={() => navigate("/")}
-            className={`cursor-pointer font-poppins font-semibold hover:text-white-500 ${
-              isActive("/") ? "text-white-500 " : "text-white"
+            className={`cursor-pointer font-poppins hover:text-white ${
+              isActive("/") ? "text-white font-semibold " : "text-white"
             }`}
           >
             Home
@@ -66,7 +66,7 @@ export default function Header() {
             }`}
           >
             {/* Service Button */}
-            <button className="flex items-center gap-1 hover:text-white-500 font-semibold">
+            <button className="flex items-center gap-1 hover:text-white-500 ">
               Service
               <FaChevronDown
                 className={`transform transition-transform duration-300 group-hover:rotate-180`}
@@ -94,16 +94,16 @@ export default function Header() {
 
           <a
             onClick={() => navigate("/about")}
-            className={`cursor-pointer font-semibold hover:text-white-500 ${
-              isActive("/about") ? "text-white-500 " : "text-white"
+            className={`cursor-pointer  hover:text-white-500 ${
+              isActive("/about") ? "text-white-500 font-semibold " : "text-white"
             }`}
           >
             About
           </a>
           <a
             href="#blog"
-            className={`cursor-pointer font-semibold hover:text-white-500 ${
-              isActive("/blog") ? "text-white-500 " : "text-white"
+            className={`cursor-pointer hover:text-white-500 ${
+              isActive("/blog") ? "text-white-500 font-semibold " : "text-white"
             }`}
           >
             Blog
@@ -112,10 +112,10 @@ export default function Header() {
 
         {/* Right: Contact Button */}
         <div className="hidden md:block space-x-3">
-          <button className="text-lg w-20 px-2 py-1 border-white text-white font-semibold border-2 rounded-lg">
+          <button className="text-lg w-20 px-2 py-1 border-white text-white  border rounded-lg">
             Login
           </button>
-          <button className="text-lg w-20 px-2 py-1 border-white-400 bg-white-400 text-white font-semibold border rounded-lg">
+          <button className="text-lg w-20 px-2 py-1 border-white bg-white text-black font-semibold border rounded-lg">
             Sign up
           </button>
         </div>
