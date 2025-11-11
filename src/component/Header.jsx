@@ -32,21 +32,22 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-10 transition-all duration-500 ${
-        isScrolled
-          ? "bg-black/20 backdrop-blur-md shadow-md"
-          : "bg-transparent"
-      }`}
+      className={`fixed max-w-[1480px] mx-auto inset-x-0 top-0 flex justify-center z-10 transition-all duration-500 ${
+    isScrolled
+      ? "bg-black/20 backdrop-blur-md shadow-md"
+      : "bg-transparent"
+  }`}
     >
       <div className="w-full mx-auto px-2 py-3 flex items-center justify-between">
         {/* Left: Logo */}
-        <div className="text-2xl space-x-2.5 flex font-bold text-gray-800">
+        <div className="text-2xl  pt-1 space-x-1.5 flex font-bold text-gray-800">
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDMqKoPHyaQi5Pqk2R2ezGvONL3lYygFmzZQ&s"
+            src="/logo.png"
             alt="Logo"
-            className="h-10 w-auto"
+            className="h-18 -mt-2  w-auto"
           />
-          <p className="text-white font-bold text-2xl">Superior Groups</p>
+          <p className="text-white font-bold items-center flex flex-col text-xl">Superior Groups <br />
+          <div className="flex justify-start text-[9px]">WHERE INNOVATION MEET</div></p>
         </div>
 
         {/* Center: Nav Links (Desktop) */}
@@ -111,12 +112,12 @@ export default function Header() {
         </nav>
 
         {/* Right: Contact Button */}
-        <div className="hidden md:block space-x-3">
+        <div className="hidden font-semibold md:block space-x-2">
           <button className="text-lg w-20 px-2 py-1 border-white text-white  border rounded-lg">
             Login
           </button>
-          <button className="text-lg w-20 px-2 py-1 border-white bg-white text-black font-semibold border rounded-lg">
-            Sign up
+         <button className="text-lg w-24 px-2 py-1 bg-white   border-none rounded-lg">
+            Sign Up
           </button>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
   FaCode,
@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import TestimonialSection from "./home/Testimonail";
 import HexagonBackground from "./Source/HexaBackground";
-import {data, project} from "./data.js";
+import { data, project } from "./data.js";
 
 console.log(project)
 import { useNavigate } from "react-router-dom";
@@ -17,96 +17,119 @@ import Header from "./Header.jsx";
 import { div } from "framer-motion/client";
 
 function Home() {
-  function Carousel() {
-    const images = [
-      "https://res.cloudinary.com/dv54awv2k/image/upload/v1762718603/Gemini_Generated_Image_htzm97htzm97htzm_bym3jq.png",
-      "https://res.cloudinary.com/dv54awv2k/image/upload/v1762718604/Gemini_Generated_Image_fpor9yfpor9yfpor_1_d2jys1.png"
-      
-    ];
+function Carousel() {
+  const images = [
+    "https://res.cloudinary.com/dv54awv2k/image/upload/v1762718603/Gemini_Generated_Image_htzm97htzm97htzm_bym3jq.png",
+    "https://res.cloudinary.com/dv54awv2k/image/upload/v1762718604/Gemini_Generated_Image_fpor9yfpor9yfpor_1_d2jys1.png",
+  ];
 
-    const REPEAT_COUNT = 100;
-    const extendedImages = Array(REPEAT_COUNT).fill(images).flat(); // 💥 creates 3 x 100 = 300 slides
+  // Clone first and last slides
+  const REPEAT_COUNT = 50;
+  const extendedImages = Array(REPEAT_COUNT).fill(images).flat();
 
-    const [current, setCurrent] = useState(1);
-    const [isTransitioning, setIsTransitioning] = useState(true);
+  const [current, setCurrent] = useState(1); // Start at first real image
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const transitionRef = useRef(true);
 
-    // ⏳ Auto slide
-    useEffect(() => {
-      const interval = setInterval(() => {
-        nextSlide();
-      }, 4000);
-      return () => clearInterval(interval);
-    }, []);
+  // Auto slide every 4s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
-    // 🔁 Handle infinite scroll
-    useEffect(() => {
-      if (current === extendedImages.length - 1) {
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrent(1);
-        }, 700);
-      }
-      if (current === 0) {
-        setTimeout(() => {
-          setIsTransitioning(false);
-          setCurrent(extendedImages.length - 2);
-        }, 700);
-      } else {
-        setIsTransitioning(true);
-      }
-    }, [current]);
+  // Function to move to next/prev slide
+  const nextSlide = () => setCurrent((prev) => prev + 1);
+  const prevSlide = () => setCurrent((prev) => prev - 1);
 
-    const prevSlide = () => setCurrent((prev) => prev - 1);
-    const nextSlide = () => setCurrent((prev) => prev + 1);
+  // Handle smooth infinite looping
+  useEffect(() => {
+    if (!transitionRef.current) return;
 
-    return (
-      <div className="relative w-full h-[100vh] overflow-hidden">
-        {/* Slides */}
-        <div
-          className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
-          style={{ transform: `translateX(-${current * 100}%)` }}
-        >
-          {extendedImages.map((src, i) => (
+    if (current === extendedImages.length - 1) {
+      // reached cloned last → jump to real first
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(1);
+      }, 700);
+      return () => clearTimeout(timeout);
+    }
+
+    if (current === 0) {
+      // reached cloned first → jump to real last
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(extendedImages.length - 2);
+      }, 700);
+      return () => clearTimeout(timeout);
+    }
+
+    setIsTransitioning(true);
+  }, [current]);
+
+  // Enable transition again after a render without it
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timeout = setTimeout(() => setIsTransitioning(true), 20);
+      return () => clearTimeout(timeout);
+    }
+  }, [isTransitioning]);
+
+  return (
+    <div className="relative max-w-[1480px] w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] mx-auto overflow-hidden rounded-lg shadow-lg">
+      {/* Slides */}
+      <div
+        className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
+        style={{
+          transform: `translateX(-${current * 100}%)`,
+        }}
+      >
+        {extendedImages.map((src, i) => (
+          <div
+            key={i}
+            className="w-full flex-shrink-0 h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+          >
             <img
-              key={i}
               src={src}
               alt={`Slide ${i}`}
-              className="w-full h-[100vh] object-cover flex-shrink-0"
+              className="w-full h-full object-cover"
             />
-          ))}
-        </div>
-
-        {/* ⬅️ Left Arrow */}
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
-        >
-          <FaChevronLeft />
-        </button>
-
-        {/* ➡️ Right Arrow */}
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
-        >
-          <FaChevronRight />
-        </button>
-
-        {/* ⭕ Dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i + 1)} // offset by 1 because of clone
-              className={`w-3 h-3 rounded-full ${
-                current === i + 1 ? "bg-white" : "bg-gray-400"
-              }`}
-            ></button>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    );
-  }
+
+      {/* Left Arrow */}
+      <button
+        onClick={prevSlide}
+        className="absolute top-1/2 left-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
+      >
+        <FaChevronLeft />
+      </button>
+
+      {/* Right Arrow */}
+      <button
+        onClick={nextSlide}
+        className="absolute top-1/2 right-4 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 z-20"
+      >
+        <FaChevronRight />
+      </button>
+
+      {/* Dots */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i + 1)} // offset due to clones
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              current === i + 1 ? "bg-white scale-110" : "bg-gray-400"
+            }`}
+          ></button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
   function TrustedPartner() {
     const partners = [
@@ -150,7 +173,7 @@ function Home() {
 
   function ServicesSection() {
     const navigate = useNavigate();
-   
+
 
     return (
       <section className="py-16">
@@ -236,84 +259,89 @@ function Home() {
       },
     ];
 
-    
+
     return (
-      <div className="flex flex-col bg-#191970 rounded-2xl shadow-xl py-10 px-4">
-  <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 drop-shadow-lg">
-    Our Projects
-  </h2>
-  <p className="text-gray-300 mt-2 text-gray-700 text-center mb-6">
-    We offer a wide range of digital solutions to grow your business
-  </p>
-<div className="w-full flex flex-wrap -mx-3">
-  {project.map((data, index) => (
-    <div
-      key={index}
-      className="w-1/2 px-3 mb-6" // 2 cards per row
-    >
-      <div className="bg-white rounded-lg shadow-md p-4">
-        <img
-          src={data.img}
-          className="w-full h-auto object-cover rounded-md mb-3"
-          alt={data.title}
-        />
-        <h2 className="text-xl font-semibold text-gray-800">{data.title}</h2>
-        <p className="text-gray-600 mt-2">{data.content}</p>
+      <div className="flex flex-col max-w-[1480px] justify-center mx-auto rounded-2xl shadow-xl py-10 px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 drop-shadow-lg">
+          Our Projects
+        </h2>
+        <p className="text-gray-300 mt-2 text-gray-700 text-center mb-6">
+          We offer a wide range of digital solutions to grow your business
+        </p>
+        <div className="w-full flex flex-wrap -mx-3">
+          {project.map((data, index) => (
+            <div
+              key={index}
+              className="w-1/2 px-3 mb-6" // 2 cards per row
+            >
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <img
+                  src={data.img}
+                  className="w-full h-auto object-cover rounded-md mb-3"
+                  alt={data.title}
+                />
+                <h2 className="text-xl font-semibold text-gray-800">{data.title}</h2>
+                <p className="text-gray-600 mt-2">{data.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+
+
+
       </div>
-    </div>
-  ))}
-</div>
-
-
-
- 
-</div>
 
     );
   }
 
   function Contactus() {
     return (
-      <div className="relative w-full h-screen">
+      <div className="relative max-w-[1480px] mx-auto w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
         {/* Background Image */}
         <img
-          src="https://images.unsplash.com/photo-1521790797524-b2497295b8a0"
+          src="/contactus.jpeg"
           alt="Contact Us"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-center"
         />
 
         <div className="absolute inset-0 bg-black/70 backdrop-blur-sm  opacity-30"></div>
 
         {/* Overlay with form */}
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-end mr-4">
-          <div className="bg-zinc-100 p-8 rounded-lg shadow-lg max-w-lg w-full">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+        <div className="absolute inset-0  bg-black/40 flex items-center justify-start mr-4">
+          <div className="bg-zinc-100 p-8 rounded-lg sm:w-[400px] md:w-[400px] lg:w-[500px] mx-8">
+            <h2 className="text-2xl font-bold text-gray-800">
               Contact Us
+              <br />
+              <span className="block text-xs text-zinc-600 ">
+                Have Queries? Drop us a message
+              </span>
             </h2>
-            <form className="space-y-4">
+            <form className="space-y-1  pt-4">
               <input
                 type="text"
                 placeholder="Your Name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:outline-none"
               />
               <input
                 type="text"
                 placeholder="Contact Number"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg  outline-none focus:outline-none"
               />
               <input
                 type="email"
                 placeholder="Email Address"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg   outline-none focus:outline-none"
               />
               <textarea
                 rows="4"
                 placeholder="Your Message"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none focus:outline-none"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none focus:outline-none"
+
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
+                className="w-full bg-zinc-800 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
               >
                 Send Message
               </button>
