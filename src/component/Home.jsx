@@ -77,7 +77,7 @@ function Carousel() {
   }, [isTransitioning]);
 
   return (
-    <div className="relative max-w-[1480px] w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] mx-auto overflow-hidden rounded-lg shadow-lg">
+    <div className="relative max-w-[1480px] w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] mx-auto overflow-hidden  shadow-lg">
       {/* Slides */}
       <div
         className={`flex ${isTransitioning ? "transition-transform duration-700 ease-in-out" : ""}`}
@@ -268,11 +268,11 @@ function Carousel() {
         <p className="text-gray-300 mt-2 text-gray-700 text-center mb-6">
           We offer a wide range of digital solutions to grow your business
         </p>
-        <div className="w-full flex flex-wrap -mx-3">
+        <div className="w-full flex flex-col md:flex-row flex-wrap -mx-3">
           {project.map((data, index) => (
             <div
               key={index}
-              className="w-1/2 px-3 mb-6" // 2 cards per row
+              className="w-full md:w-1/2 px-3 mb-6" // 2 cards per row
             >
               <div className="bg-white rounded-lg shadow-md p-4">
                 <img
@@ -305,7 +305,7 @@ function Carousel() {
           className="w-full h-full object-center"
         />
 
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm  opacity-30"></div>
+        <div className="absolute inset-0 bg-blue-600/70   opacity-30"></div>
 
         {/* Overlay with form */}
         <div className="absolute inset-0  bg-black/40 flex items-center justify-start mr-4">

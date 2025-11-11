@@ -38,16 +38,23 @@ export default function Header() {
       : "bg-transparent"
   }`}
     >
-      <div className="w-full mx-auto px-2 py-3 flex items-center justify-between">
+      <div className="w-full mx-auto px-2  flex items-center justify-between">
         {/* Left: Logo */}
-        <div className="text-2xl  pt-1 space-x-1.5 flex font-bold text-gray-800">
+        <div className="text-2xl    flex font-bold text-gray-800">
           <img
             src="/logo.png"
             alt="Logo"
-            className="h-18 -mt-2  w-auto"
+            className="h-18  w-auto"
           />
-          <p className="text-white font-bold items-center flex flex-col text-xl">Superior Groups <br />
-          <div className="flex justify-start text-[9px]">WHERE INNOVATION MEET</div></p>
+          <div className="flex flex-col justify-center items-center my-auto  h-full">
+  <p className="text-white font-bold -mt-2  text-xl">
+    Superior Groups
+    <span className="flex justify-start text-[9px] mt-0.5">
+      WHERE INNOVATION MEET
+    </span>
+  </p>
+</div>
+
         </div>
 
         {/* Center: Nav Links (Desktop) */}

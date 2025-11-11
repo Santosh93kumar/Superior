@@ -2,20 +2,23 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="max-w-[1480px] mx-auto bg-gray-900 text-white py-12">
+    <footer className="max-w-[1480px] mx-auto bg-[#070E3B] text-white py-12">
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between gap-8">
         {/* Logo Section */}
         <div className="flex flex-col items-start">
-          <div className="flex space-x-3">
+          <div className="flex space-x-1">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDMqKoPHyaQi5Pqk2R2ezGvONL3lYygFmzZQ&s"
+              src="/logo.png"
               className="h-16"
               alt="Logo"
             />
-            <p className="text-lg items-center flex ">Superior Groups</p>
+           <div className="flex flex-col">
+             <p className="text-lg items-center flex pt-2 ">Superior Groups</p>
+            <span className="text-[9px]">WHERE INNOVATION MEETS</span>
+           </div>
           </div>
           <p className="text-gray-400">
-            © 2025 Your Company. All rights reserved.
+            © 2025 Superior Groups. All rights reserved.
           </p>
         </div>
 
@@ -86,9 +89,9 @@ function Footer() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-2 rounded-l-lg  border border-blue-600 focus:outline-none "
+              className="px-4 py-2 rounded-l-lg  border border-white focus:outline-none "
             />
-            <button className="bg-blue-600 px-4 py-2 rounded-r-lg hover:bg-blue-700 transition font-semibold">
+            <button className="bg-[#050B2E] border border-white px-4 py-2 rounded-r-lg hover:bg-[#05071A] transition font-semibold">
               Subscribe
             </button>
           </div>
