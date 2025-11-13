@@ -6,7 +6,7 @@ export const data = [
       title: " Our Web Development Services",
       button: "Get Started",
       image:
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+        "https://res.cloudinary.com/dv54awv2k/image/upload/v1762718606/Gemini_Generated_Image_ykj1caykj1caykj1_ivufqe.png",
     },
     about: {
       title: "Revolutionize Your Software Development with DevSecOps",

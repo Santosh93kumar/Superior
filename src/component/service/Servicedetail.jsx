@@ -70,7 +70,7 @@ function Servicedetail() {
           />
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-start px-10 bg-black/40">
             <div className="text-white z-20 max-w-2xl">
-              <h2 className="text-3xl font-bold mb-4">
+              {/* <h2 className="text-3xl font-bold mb-4">
                 {content.heading.subtitle}
               </h2>
               <h1 className="text-5xl font-extrabold mb-6">
@@ -78,14 +78,14 @@ function Servicedetail() {
               </h1>
               <button className="px-6 py-3 border text-white rounded-lg hover:text-blue-500 hover:border-blue-500 transition hover:font-semibold">
                 {content.heading.button}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
 
         {/* 🧭 Sticky Navigation */}
         <div className="sticky top-0 z-30 bg-white">
-          <header className="flex w-full bg-orange-500 justify-center gap-20 px-20 text-white font-semibold text-xl py-4">
+          <header className="flex w-full bg-[#070E3B] justify-center gap-20 px-20 text-white font-semibold text-xl py-4">
             {["about", "service", "feedback"].map((section) => (
               <button
                 key={section}

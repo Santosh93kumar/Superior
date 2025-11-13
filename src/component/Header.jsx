@@ -8,11 +8,21 @@ export default function Header() {
 
   const servicedata = [
     { id: 1, name: "Web Development" },
-    { id: 2, name: "Web Design" },
-    { id: 3, name: "Website Design" },
-    { id: 4, name: "SEO Services" },
-    { id: 5, name: "Digital Marketing" },
+  
+    { id: 2, name: "Website Design" },
+    { id: 3, name: "SEO Services" },
+    { id: 4, name: "Digital Marketing" },
   ];
+  const internshipdata = [
+    { id: 1, name: 'Full Stack Development' },
+    { id: 2, name: 'Data Analystic' },
+    { id: 6, name: 'Data Science' },
+    { id: 7, name: ' AI Agentic' },
+    { id: 8, name: 'AI & Ml ' },
+    { id: 3, name: 'Graphic Designing' },
+    { id: 4, name: 'Content Writing' },
+    { id: 5, name: 'SEO' },
+  ]
 
   // 👇 Detect scroll and update state
   useEffect(() => {
@@ -32,11 +42,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed max-w-[1480px] mx-auto inset-x-0 top-0 flex justify-center z-10 transition-all duration-500 ${
-    isScrolled
-      ? "bg-black/20 backdrop-blur-md shadow-md"
-      : "bg-transparent"
-  }`}
+      className={`fixed max-w-[1480px] mx-auto inset-x-0 top-0 flex justify-center z-10 transition-all duration-500 ${isScrolled
+          ? "bg-black/20 backdrop-blur-md shadow-md"
+          : "bg-transparent"
+        }`}
     >
       <div className="w-full mx-auto px-2  flex items-center justify-between">
         {/* Left: Logo */}
@@ -47,13 +56,13 @@ export default function Header() {
             className="h-18  w-auto"
           />
           <div className="flex flex-col justify-center items-center my-auto  h-full">
-  <p className="text-white font-bold -mt-2  text-xl">
-    Superior Groups
-    <span className="flex justify-start text-[9px] mt-0.5">
-      WHERE INNOVATION MEET
-    </span>
-  </p>
-</div>
+            <p className="text-white font-bold -mt-2  text-xl">
+              Superior Groups
+              <span className="flex justify-start text-[9px] mt-0.5">
+                WHERE INNOVATION MEET
+              </span>
+            </p>
+          </div>
 
         </div>
 
@@ -61,17 +70,15 @@ export default function Header() {
         <nav className="hidden text-lg md:flex space-x-8 ">
           <a
             onClick={() => navigate("/")}
-            className={`cursor-pointer font-poppins hover:text-white ${
-              isActive("/") ? "text-white font-semibold " : "text-white"
-            }`}
+            className={`cursor-pointer font-poppins hover:text-white ${isActive("/") ? "text-white font-semibold " : "text-white"
+              }`}
           >
             Home
           </a>
 
           <div
-            className={`relative inline-block group ${
-              isActive("/service") ? "text-white-500" : "text-white"
-            }`}
+            className={`relative inline-block group ${isActive("/service") ? "text-white-500" : "text-white"
+              }`}
           >
             {/* Service Button */}
             <button className="flex items-center gap-1 hover:text-white-500 ">
@@ -82,37 +89,58 @@ export default function Header() {
             </button>
 
             {/* Dropdown Menu */}
-            <div className="absolute z-20 left-0 hidden w-72 bg-white/40 shadow-lg rounded-md border border-zinc-200 group-hover:block text-black">
-              {servicedata.map((service, index) => (
-                <a
-                  onClick={() =>
-                    navigate(
-                      `/service/${service.name.toLowerCase().replace(/\s+/g, "-")}/${service.id}`,
-                    )
-                  }
-                  key={index}
-                  href={`#${service.slug || "web"}`} // optional: dynamic slug
-                  className="block border-b border-zinc-400 px-4 py-2 hover:bg-gray-100"
-                >
-                  {service.name}
-                </a>
-              ))}
+            <div className="absolute z-20 left-0 hidden max-w-[lg] bg-zinc-400/80 shadow-lg rounded-md border border-zinc-600 group-hover:block text-black">
+              <div className="flex flex-row space-x-4">
+                <div className="w-80 p-3">
+                  <h3 className="px-4 font-semibold text-gray-200">Services</h3>
+                  {servicedata.map((service, index) => (
+                    <a
+                      onClick={() =>
+                        navigate(
+                          `/service/${service.name.toLowerCase().replace(/\s+/g, "-")}/${service.id}`,
+                        )
+                      }
+                      key={index}
+                      href={`#${service.slug || "web"}`} // optional: dynamic slug
+                      className="block border-b border-zinc-400 px-4 py-2 hover:bg-gray-100"
+                    >
+                      {service.name}
+                    </a>
+                  ))}
+                </div>
+                <div className="w-80 p-3">
+                  <h3 className="px-4 font-semibold text-gray-200">Internships</h3>
+                  {internshipdata.map((internship, index) => (
+                    <a
+                      onClick={() =>
+                        navigate(
+                          `/internship/${internship.name.toLowerCase().replace(/\s+/g, "-")}/${internship.id}`,
+                        )
+                      }
+                      key={index}
+                      href={`#${internship.slug || "web"}`} // optional: dynamic slug
+                      className="block border-b border-zinc-400 px-4 py-2 hover:bg-gray-100"
+                    >
+                      {internship.name}
+                    </a>
+                  ))}
+                </div>
+
+              </div>
             </div>
           </div>
 
           <a
             onClick={() => navigate("/about")}
-            className={`cursor-pointer  hover:text-white-500 ${
-              isActive("/about") ? "text-white-500 font-semibold " : "text-white"
-            }`}
+            className={`cursor-pointer  hover:text-white-500 ${isActive("/about") ? "text-white-500 font-semibold " : "text-white"
+              }`}
           >
             About
           </a>
           <a
             href="#blog"
-            className={`cursor-pointer hover:text-white-500 ${
-              isActive("/blog") ? "text-white-500 font-semibold " : "text-white"
-            }`}
+            className={`cursor-pointer hover:text-white-500 ${isActive("/blog") ? "text-white-500 font-semibold " : "text-white"
+              }`}
           >
             Blog
           </a>
@@ -123,7 +151,7 @@ export default function Header() {
           <button className="text-lg w-20 px-2 py-1 border-white text-white  border rounded-lg">
             Login
           </button>
-         <button className="text-lg w-24 px-2 py-1 bg-white   border-none rounded-lg">
+          <button className="text-lg w-24 px-2 py-1 bg-white   border-none rounded-lg">
             Sign Up
           </button>
         </div>

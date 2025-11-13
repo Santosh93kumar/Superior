@@ -315,7 +315,7 @@ export default function TestimonialSection() {
   return (
     <section className="max-w-[1480px] mx-auto text-black bg-white py-16 px-6">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl font-bold mb-2">What Our Students Say</h2>
+        <h2 className="text-4xl text-gray-800 font-bold mb-2">What Our Students Say</h2>
         <p className="text-gray-400">
           Real stories from people who leveled up 🚀
         </p>
@@ -325,7 +325,7 @@ export default function TestimonialSection() {
         {testimonials.map((t, idx) => (
           <div
             key={idx}
-            className="relative p-6 rounded-2xl border border-blue-300/30 shadow-lg flex flex-col bg-[#031F44] backdrop-blur-xl overflow-hidden group"
+            className="relative p-6 rounded-2xl border border-blue-300/30 shadow-lg flex flex-col bg-[#031F44]/80 backdrop-blur-xl overflow-hidden group"
           >
             {/* Image */}
             <img

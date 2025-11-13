@@ -19,6 +19,7 @@ function App() {
         { path: "/about", element: <About /> },
         { path: "/service", element: <Service /> },
         { path: "/service/:name/:id", element: <Servicepage /> },
+         { path: "/internship/:name/:id", element: <Servicepage /> },
       ],
     },
   ]);
